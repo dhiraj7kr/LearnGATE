@@ -7,14 +7,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Page-specific gradient */
-        body {
-            background: linear-gradient(135deg, #e74c3c, #c0392b, #e67e22);
+        /* Small override to ensure the active category button 
+           matches the blue aesthetic defined in global CSS */
+        .category-btn.active {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
+    
     <nav class="navbar">
         <div class="nav-container">
             <a href="./index.html" class="nav-brand">
@@ -28,19 +31,19 @@
     </nav>
 
     <div class="container">
-        <header>
-            <h1><i class="fas fa-project-diagram"></i> Algorithms Video Library</h1>
+        <header class="fade-up">
+            <h1><i class="fas fa-project-diagram" style="color: var(--accent);"></i> Algorithms Video Library</h1>
             <p class="subtitle">GATE Free Crash Course covering Algorithm Analysis, Design Techniques, Divide & Conquer, Greedy Methods, Dynamic Programming, and Graph Algorithms</p>
         </header>
         
-        <div class="search-container">
+        <div class="search-container fade-up">
             <input type="text" id="searchInput" placeholder="Search for specific algorithms topics...">
             <div class="search-icon">
                 <i class="fas fa-search"></i>
             </div>
         </div>
         
-        <div class="categories">
+        <div class="categories fade-up">
             <button class="category-btn active" data-category="all">All Videos</button>
             <button class="category-btn" data-category="intro">Introduction</button>
             <button class="category-btn" data-category="complexity">Complexity Analysis</button>
@@ -50,7 +53,7 @@
             <button class="category-btn" data-category="graph">Graph Algorithms</button>
         </div>
         
-        <div class="main-content">
+        <div class="main-content fade-up">
             <div class="video-player-container">
                 <div class="video-player">
                     <iframe id="mainVideo" src="https://www.youtube.com/embed/Z5wuGWZR9d0" 
@@ -72,18 +75,19 @@
             <div class="video-list-container">
                 <h3 class="video-list-title">All Lectures</h3>
                 <div class="video-list" id="videoList">
-                    <!-- Video list will be populated by JavaScript -->
-                </div>
+                    </div>
             </div>
         </div>
         
         <footer>
-            <p>© 2024 Algorithms Video Library | GATE Free Crash Course</p>
-            <div class="footer-links">
-                <a href="./index.html">Home</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-                <a href="#privacy">Privacy Policy</a>
+            <div class="footer-content" style="text-align: center;">
+                <p>© 2024 Algorithms Video Library | GATE Free Crash Course</p>
+                <div class="footer-links" style="display: flex; justify-content: center; gap: 20px;">
+                    <a href="./index.html">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#privacy">Privacy Policy</a>
+                </div>
             </div>
         </footer>
     </div>
@@ -172,6 +176,34 @@
                 watched: false
             }
         ];
+
+        // Simple Intersection Observer for Fade Up animation (matches Index page)
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // We add a 'visible' class if you are using that in CSS
+                        // Or simply rely on the animation already defined in 'fade-up'
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-up').forEach(el => {
+                // Initialize state for JS-based animation if CSS keyframes aren't enough
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
     </script>
     <script src="script.js"></script>
 </body>

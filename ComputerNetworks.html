@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            background: linear-gradient(135deg, #3498db, #2980b9, #1abc9c);
-        }
+        /* Optional: Specific override for Network category active state if desired */
+        /* .category-btn.active { background-color: var(--accent); } */
     </style>
 </head>
 <body>
+
     <nav class="navbar">
         <div class="nav-container">
             <a href="./index.html" class="nav-brand">
@@ -26,19 +26,19 @@
     </nav>
 
     <div class="container">
-        <header>
-            <h1><i class="fas fa-network-wired"></i> Computer Networks Video Library</h1>
+        <header class="fade-up">
+            <h1><i class="fas fa-network-wired" style="color: var(--accent);"></i> Computer Networks</h1>
             <p class="subtitle">GATE Free Crash Course covering IP Addressing, Subnetting, Error Detection, Protocols, TCP/IP, and more</p>
         </header>
         
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search for networking topics...">
+        <div class="search-container fade-up">
+            <input type="text" id="searchInput" placeholder="Search for networking topics (e.g., Subnetting, TCP, CRC)...">
             <div class="search-icon">
                 <i class="fas fa-search"></i>
             </div>
         </div>
         
-        <div class="categories">
+        <div class="categories fade-up">
             <button class="category-btn active" data-category="all">All Videos</button>
             <button class="category-btn" data-category="addressing">IP Addressing</button>
             <button class="category-btn" data-category="subnetting">Subnetting</button>
@@ -47,7 +47,8 @@
             <button class="category-btn" data-category="tcp">TCP/IP</button>
         </div>
         
-        <div class="main-content">
+        <div class="main-content fade-up">
+            
             <div class="video-player-container">
                 <div class="video-player">
                     <iframe id="mainVideo" src="https://www.youtube.com/embed/pGWxdTJPjKE" 
@@ -62,33 +63,37 @@
                         <span id="mainVideoLecture"><i class="fas fa-book-open"></i> Lecture 1</span>
                         <span id="mainVideoCategory"><i class="fas fa-folder"></i> IP Addressing</span>
                     </div>
-                    <p class="video-desc" id="mainVideoDesc">Introduction to IP addressing, understanding IPv4 structure, network and host portions, and the basics of IP address allocation.</p>
+                    <p class="video-desc" id="mainVideoDesc">Introduction to IP addressing, understanding IPv4 structure, network and host portions, and the basics of IP address allocation. </p>
                 </div>
             </div>
             
             <div class="video-list-container">
                 <h3 class="video-list-title">All Lectures</h3>
-                <div class="video-list" id="videoList"></div>
+                <div class="video-list" id="videoList">
+                    </div>
             </div>
         </div>
         
         <footer>
-            <p>© 2024 Computer Networks Video Library | GATE Free Crash Course</p>
-            <div class="footer-links">
-                <a href="./index.html">Home</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-                <a href="#privacy">Privacy Policy</a>
+            <div class="footer-content" style="text-align: center;">
+                <p>© 2024 Computer Networks Video Library | GATE Free Crash Course</p>
+                <div class="footer-links" style="display: flex; justify-content: center; gap: 20px;">
+                    <a href="./index.html">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#privacy">Privacy Policy</a>
+                </div>
             </div>
         </footer>
     </div>
 
     <script>
+        // Video Data
         const videos = [
-            { id: 1, title: "Computer Networks 01 | Introduction to IP Addressing", category: "addressing", youtubeId: "pGWxdTJPjKE", description: "Introduction to IP addressing, understanding IPv4 structure, network and host portions, and the basics of IP address allocation.", watched: false },
+            { id: 1, title: "Computer Networks 01 | Introduction to IP Addressing", category: "addressing", youtubeId: "pGWxdTJPjKE", description: "Introduction to IP addressing, understanding IPv4 structure, network and host portions, and the basics of IP address allocation. ", watched: false },
             { id: 2, title: "Computer Networks 02 | Classful Addressing", category: "addressing", youtubeId: "8dUh3oOhtqs", description: "Understanding classful addressing in IP networks, class A, B, C, D, and E addresses, and their ranges.", watched: false },
-            { id: 3, title: "Computer Networks 03 | Types of Communication", category: "protocols", youtubeId: "XgLfxuRFYzg", description: "Exploring different types of communication in computer networks - unicast, multicast, and broadcast.", watched: false },
-            { id: 4, title: "Computer Networks 04 | Introduction to Subnetting", category: "subnetting", youtubeId: "_NbT1VuD5n8", description: "Introduction to subnetting, understanding subnet masks, and how to divide networks into smaller subnets.", watched: false },
+            { id: 3, title: "Computer Networks 03 | Types of Communication", category: "protocols", youtubeId: "XgLfxuRFYzg", description: "Exploring different types of communication in computer networks - unicast, multicast, and broadcast. ", watched: false },
+            { id: 4, title: "Computer Networks 04 | Introduction to Subnetting", category: "subnetting", youtubeId: "_NbT1VuD5n8", description: "Introduction to subnetting, understanding subnet masks, and how to divide networks into smaller subnets. ", watched: false },
             { id: 5, title: "Computer Networks 05 | Problem Solving on Subnetting (Part-1)", category: "subnetting", youtubeId: "Rg7rm7wC0rc", description: "Solving subnetting problems, calculating subnets, hosts, and understanding subnet masks in practice.", watched: false },
             { id: 6, title: "Computer Networks 06 | Problem Solving on Subnetting Part-2", category: "subnetting", youtubeId: "aG3QAOpNaAk", description: "Continuing with subnetting problem solving, advanced scenarios and practical applications.", watched: false },
             { id: 7, title: "Computer Networks 07 | Problem Solving on Subnetting part-3", category: "subnetting", youtubeId: "9CpVLcg4Nj0", description: "Advanced subnetting problems, VLSM (Variable Length Subnet Masking) concepts and applications.", watched: false },
@@ -98,22 +103,171 @@
             { id: 11, title: "Supernetting in Classfull Addressing", category: "addressing", youtubeId: "BlYr4YvDdyU", description: "Understanding supernetting in classful addressing environments and its practical applications.", watched: false },
             { id: 12, title: "Computer Networks 11 | Types of Error & Hamming Distance", category: "error", youtubeId: "0wrrohWULrw", description: "Exploring types of errors in data transmission, single-bit and burst errors, and understanding Hamming distance.", watched: false },
             { id: 13, title: "Computer Networks 12 | CRC & Checksum", category: "error", youtubeId: "Bc-AhLMvlxg", description: "Understanding Cyclic Redundancy Check (CRC) and checksum methods for error detection in networks.", watched: false },
-            { id: 14, title: "Computer Networks 13 | Hamming Code", category: "error", youtubeId: "5x556v5AYsM", description: "Understanding Hamming code for error detection and correction, encoding and decoding processes.", watched: false },
+            { id: 14, title: "Computer Networks 13 | Hamming Code", category: "error", youtubeId: "5x556v5AYsM", description: "Understanding Hamming code for error detection and correction, encoding and decoding processes. ", watched: false },
             { id: 15, title: "Computer Networks 14 | Delay in Computer Network", category: "protocols", youtubeId: "vXyNFzq7Ixc", description: "Exploring different types of delays in computer networks - transmission, propagation, processing, and queuing delays.", watched: false },
-            { id: 16, title: "Computer Networks 15 | Stop & Wait Protocol", category: "protocols", youtubeId: "0fADxOjC3ko", description: "Understanding Stop and Wait protocol for reliable data transmission, its working and limitations.", watched: false },
+            { id: 16, title: "Computer Networks 15 | Stop & Wait Protocol", category: "protocols", youtubeId: "0fADxOjC3ko", description: "Understanding Stop and Wait protocol for reliable data transmission, its working and limitations. ", watched: false },
             { id: 17, title: "Computer Networks 16 | Go Back-N Protocol", category: "protocols", youtubeId: "xLAAtHaHCwg", description: "Introduction to Go Back-N protocol, sliding window protocol, and its advantages over Stop and Wait.", watched: false },
             { id: 18, title: "Computer Networks 17 | Go Back-N Protocol - 02", category: "protocols", youtubeId: "HK3wIp_v_A0", description: "Pipeline hazards, data dependencies, and techniques for hazard detection and resolution.", watched: false },
             { id: 19, title: "Computer Networks 18 | Selective Repeat Protocol", category: "protocols", youtubeId: "EctRj5FuZD0", description: "Understanding Selective Repeat protocol, its advantages over Go Back-N, and implementation details.", watched: false },
-            { id: 20, title: "Computer Networks 19 | IPv4 Header", category: "tcp", youtubeId: "fb5qtrC65OI", description: "Detailed examination of IPv4 header structure, fields, and their functions in packet transmission.", watched: false },
+            { id: 20, title: "Computer Networks 19 | IPv4 Header", category: "tcp", youtubeId: "fb5qtrC65OI", description: "Detailed examination of IPv4 header structure, fields, and their functions in packet transmission. ", watched: false },
             { id: 21, title: "Computer Networks 20 | IPv4 Header (Part 2)", category: "tcp", youtubeId: "9Fn06s7mJ3Y", description: "Continuing with IPv4 header analysis, advanced fields, and practical implications in networking.", watched: false },
             { id: 22, title: "Computer Networks 21 | Fragmentation in IPv4", category: "tcp", youtubeId: "ODYDwokgPMM", description: "Understanding fragmentation in IPv4, MTU, and how large packets are divided for transmission.", watched: false },
-            { id: 23, title: "Computer Networks 22 | TCP Header & Wrap Around Time", category: "tcp", youtubeId: "jLdytO8yqiE", description: "Examining TCP header structure, sequence numbers, and understanding wrap around time concept.", watched: false },
+            { id: 23, title: "Computer Networks 22 | TCP Header & Wrap Around Time", category: "tcp", youtubeId: "jLdytO8yqiE", description: "Examining TCP header structure, sequence numbers, and understanding wrap around time concept. ", watched: false },
             { id: 24, title: "Computer Networks 23 | Congestion Control in TCP", category: "tcp", youtubeId: "uFR4WU86nuQ", description: "Understanding congestion control mechanisms in TCP, slow start, congestion avoidance algorithms.", watched: false },
             { id: 25, title: "Computer Network 24 | Congestion Control in TCP Part-2", category: "tcp", youtubeId: "cvRkUCVdLSc", description: "Advanced congestion control techniques in TCP, fast retransmit, and fast recovery mechanisms.", watched: false },
             { id: 26, title: "Computer Network 25 | UDP", category: "tcp", youtubeId: "K2hSeMMwXtU", description: "Understanding User Datagram Protocol (UDP), its header structure, and comparison with TCP.", watched: false },
             { id: 27, title: "Computer Network 26 | TCP Vs UDP", category: "tcp", youtubeId: "hCXdl_DszgI", description: "Comprehensive comparison between TCP and UDP protocols, their differences, and use cases.", watched: false }
         ];
+
+        // DOM Elements
+        const mainVideo = document.getElementById('mainVideo');
+        const mainVideoTitle = document.getElementById('mainVideoTitle');
+        const mainVideoLecture = document.getElementById('mainVideoLecture');
+        const mainVideoCategory = document.getElementById('mainVideoCategory');
+        const mainVideoDesc = document.getElementById('mainVideoDesc');
+        const videoList = document.getElementById('videoList');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const searchInput = document.getElementById('searchInput');
+
+        // Helper: Get friendly category name
+        function getCategoryName(category) {
+            const map = {
+                'addressing': 'IP Addressing',
+                'subnetting': 'Subnetting',
+                'error': 'Error Detection',
+                'protocols': 'Protocols',
+                'tcp': 'TCP/IP'
+            };
+            return map[category] || 'General';
+        }
+
+        // Display video list
+        function displayVideoList(videosToDisplay) {
+            videoList.innerHTML = '';
+            
+            videosToDisplay.forEach(video => {
+                const videoItem = document.createElement('div');
+                videoItem.className = 'video-item';
+                videoItem.setAttribute('data-category', video.category);
+                videoItem.setAttribute('data-id', video.id);
+                
+                videoItem.innerHTML = `
+                    <div class="video-thumb">
+                        <iframe src="https://www.youtube.com/embed/${video.youtubeId}" 
+                                title="${video.title}" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-item-info">
+                        <div class="video-item-title">${video.title}</div>
+                        <div class="video-item-meta">
+                            <span>Lecture ${video.id}</span>
+                            <span>${getCategoryName(video.category)}</span>
+                        </div>
+                    </div>
+                `;
+                
+                // Click Event
+                videoItem.addEventListener('click', () => {
+                    updateMainPlayer(video);
+                });
+                
+                videoList.appendChild(videoItem);
+            });
+        }
+
+        // Update Main Player
+        function updateMainPlayer(video) {
+            // Update active class
+            document.querySelectorAll('.video-item').forEach(item => item.classList.remove('active'));
+            const activeItem = document.querySelector(`.video-item[data-id="${video.id}"]`);
+            if(activeItem) activeItem.classList.add('active');
+
+            // Update Content
+            mainVideo.src = `https://www.youtube.com/embed/${video.youtubeId}`;
+            mainVideoTitle.textContent = video.title;
+            mainVideoLecture.innerHTML = `<i class="fas fa-book-open"></i> Lecture ${video.id}`;
+            mainVideoCategory.innerHTML = `<i class="fas fa-folder"></i> ${getCategoryName(video.category)}`;
+            mainVideoDesc.textContent = video.description;
+
+            // Scroll for mobile
+            if(window.innerWidth < 1024) {
+                mainVideo.scrollIntoView({behavior: "smooth"});
+            }
+        }
+
+        // Filter Logic
+        function filterVideos(category) {
+            if (category === 'all') return videos;
+            return videos.filter(v => v.category === category);
+        }
+
+        // Search Logic
+        function searchVideos(query) {
+            const lower = query.toLowerCase();
+            return videos.filter(v => 
+                v.title.toLowerCase().includes(lower) || 
+                v.description.toLowerCase().includes(lower)
+            );
+        }
+
+        // Category Buttons
+        categoryButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const cat = btn.getAttribute('data-category');
+                const filtered = filterVideos(cat);
+                displayVideoList(filtered);
+
+                if(filtered.length > 0) updateMainPlayer(filtered[0]);
+            });
+        });
+
+        // Search Input
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.trim();
+            let results;
+            
+            if(query === '') {
+                const activeCat = document.querySelector('.category-btn.active').getAttribute('data-category');
+                results = filterVideos(activeCat);
+            } else {
+                results = searchVideos(query);
+            }
+            
+            displayVideoList(results);
+            if(results.length > 0) updateMainPlayer(results[0]);
+        });
+
+        // Initialize and Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animation Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-up').forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Initial Load
+            displayVideoList(videos);
+            // Highlight first video
+            const firstItem = document.querySelector('.video-item');
+            if(firstItem) firstItem.classList.add('active');
+        });
     </script>
-    <script src="script.js"></script>
 </body>
 </html>

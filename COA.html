@@ -7,12 +7,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            background: linear-gradient(135deg, #8e44ad, #9b59b6, #2c3e50);
-        }
+        /* Optional: Active category color override if you want a specific color for COA 
+           (e.g., Purple to match the subject's original theme, or keep Blue for consistency).
+           Current setting: Keeps the Apple Blue defined in styles.css */
+        
+        /* .category-btn.active {
+            background-color: #8e44ad;
+            border-color: #8e44ad;
+        } */
     </style>
 </head>
 <body>
+
     <nav class="navbar">
         <div class="nav-container">
             <a href="./index.html" class="nav-brand">
@@ -26,19 +32,19 @@
     </nav>
 
     <div class="container">
-        <header>
-            <h1><i class="fas fa-microchip"></i> Computer Organization & Architecture</h1>
+        <header class="fade-up">
+            <h1><i class="fas fa-microchip" style="color: var(--accent);"></i> Computer Organization</h1>
             <p class="subtitle">GATE 2024 Crash Course covering CPU Design, Instruction Sets, Pipelining, Memory Hierarchy, and I/O Systems</p>
         </header>
         
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search for COA topics...">
+        <div class="search-container fade-up">
+            <input type="text" id="searchInput" placeholder="Search for COA topics (e.g., Pipelining, Cache, ALU)...">
             <div class="search-icon">
                 <i class="fas fa-search"></i>
             </div>
         </div>
         
-        <div class="categories">
+        <div class="categories fade-up">
             <button class="category-btn active" data-category="all">All Videos</button>
             <button class="category-btn" data-category="intro">Introduction</button>
             <button class="category-btn" data-category="instructions">Instructions</button>
@@ -47,7 +53,8 @@
             <button class="category-btn" data-category="memory">Memory</button>
         </div>
         
-        <div class="main-content">
+        <div class="main-content fade-up">
+            
             <div class="video-player-container">
                 <div class="video-player">
                     <iframe id="mainVideo" src="https://www.youtube.com/embed/zFphcpXP2zA" 
@@ -68,22 +75,26 @@
             
             <div class="video-list-container">
                 <h3 class="video-list-title">All Lectures</h3>
-                <div class="video-list" id="videoList"></div>
+                <div class="video-list" id="videoList">
+                    </div>
             </div>
         </div>
         
         <footer>
-            <p>© 2024 Computer Organization & Architecture | GATE 2024 Crash Course</p>
-            <div class="footer-links">
-                <a href="./index.html">Home</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-                <a href="#privacy">Privacy Policy</a>
+            <div class="footer-content" style="text-align: center;">
+                <p>© 2024 Computer Organization & Architecture | GATE 2024 Crash Course</p>
+                <div class="footer-links" style="display: flex; justify-content: center; gap: 20px;">
+                    <a href="./index.html">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#privacy">Privacy Policy</a>
+                </div>
             </div>
         </footer>
     </div>
 
     <script>
+        // COA Video Data
         const videos = [
             {
                 id: 1,
@@ -95,7 +106,7 @@
             },
             {
                 id: 2,
-                title: "GATE 2024 | Computer Organization And Architecture (COA) | Syllabus Discussion, Weightage, Strategy",
+                title: "GATE 2024 | COA Syllabus Discussion, Weightage, Strategy",
                 category: "intro",
                 youtubeId: "eq58CzhH-fc",
                 description: "Detailed discussion of COA syllabus for GATE 2024, topic weightage, and preparation strategy for maximum marks.",
@@ -103,7 +114,7 @@
             },
             {
                 id: 3,
-                title: "Computer Organization and Architecture 02 | Machine Instruction & Addressing Modes-1",
+                title: "COA 02 | Machine Instruction & Addressing Modes-1",
                 category: "instructions",
                 youtubeId: "qjxOq_kKfCY",
                 description: "Understanding machine instructions, instruction formats, and introduction to addressing modes in computer architecture.",
@@ -111,7 +122,7 @@
             },
             {
                 id: 4,
-                title: "Computer Org. and Architecture 03 | Machine Instruction & Addressing Modes -2",
+                title: "COA 03 | Machine Instruction & Addressing Modes -2",
                 category: "instructions",
                 youtubeId: "sfOMaBfb-Sw",
                 description: "Advanced concepts in addressing modes, instruction types, and their implementation in computer systems.",
@@ -119,7 +130,7 @@
             },
             {
                 id: 5,
-                title: "Computer Organization & Architecture (COA) 04 | Floating Point Representation",
+                title: "COA 04 | Floating Point Representation",
                 category: "arithmetic",
                 youtubeId: "ZhAZeaHb3EU",
                 description: "Understanding floating point representation, IEEE 754 standard, and arithmetic operations with floating point numbers.",
@@ -127,7 +138,7 @@
             },
             {
                 id: 6,
-                title: "Computer Organization and Architecture 05 | ALU & Control Unit (Part - 01)",
+                title: "COA 05 | ALU & Control Unit (Part - 01)",
                 category: "arithmetic",
                 youtubeId: "2pdneEfRnT4",
                 description: "Introduction to Arithmetic Logic Unit (ALU) and Control Unit, their functions, and design principles in CPU architecture.",
@@ -135,7 +146,7 @@
             },
             {
                 id: 7,
-                title: "Computer Organization and Architecture 06 | ALU & Control Unit (Part - 02)",
+                title: "COA 06 | ALU & Control Unit (Part - 02)",
                 category: "arithmetic",
                 youtubeId: "3VRC7nol_Ok",
                 description: "Advanced concepts in ALU design, control signals, and implementation of complex operations in computer systems.",
@@ -143,7 +154,7 @@
             },
             {
                 id: 8,
-                title: "Computer Organization and Architecture 07 | Instruction Pipelining Part -01",
+                title: "COA 07 | Instruction Pipelining Part -01",
                 category: "pipelining",
                 youtubeId: "wLmd8pF3tFQ",
                 description: "Introduction to instruction pipelining, pipeline stages, and performance improvement through parallel instruction execution.",
@@ -151,7 +162,7 @@
             },
             {
                 id: 9,
-                title: "Computer Organization and Architecture 08 | Instruction Pipelining Part - 02",
+                title: "COA 08 | Instruction Pipelining Part - 02",
                 category: "pipelining",
                 youtubeId: "1rNWjNI0kVg",
                 description: "Pipeline hazards, data dependencies, and techniques for hazard detection and resolution in pipelined processors.",
@@ -159,7 +170,7 @@
             },
             {
                 id: 10,
-                title: "Computer Organization And Architecture 09 | Instruction Pipelining Part - 03",
+                title: "COA 09 | Instruction Pipelining Part - 03",
                 category: "pipelining",
                 youtubeId: "kuWdYrEOH0o",
                 description: "Advanced pipelining concepts, branch prediction, and optimizing pipeline performance in modern processors.",
@@ -167,7 +178,7 @@
             },
             {
                 id: 11,
-                title: "Computer Organization & Architecture 10 | Cache Memory Part - 01",
+                title: "COA 10 | Cache Memory Part - 01",
                 category: "memory",
                 youtubeId: "Io8KrcvS8Bw",
                 description: "Introduction to cache memory, memory hierarchy, cache mapping techniques, and cache performance metrics.",
@@ -175,7 +186,7 @@
             },
             {
                 id: 12,
-                title: "Computer Organization & Architecture 11 | Cache Memory Part - 02",
+                title: "COA 11 | Cache Memory Part - 02",
                 category: "memory",
                 youtubeId: "IHMwqMNUuns",
                 description: "Cache organization, replacement policies, write policies, and advanced cache optimization techniques.",
@@ -183,7 +194,7 @@
             },
             {
                 id: 13,
-                title: "Computer Organization & Architecture 12 | Cache Memory Part - 03",
+                title: "COA 12 | Cache Memory Part - 03",
                 category: "memory",
                 youtubeId: "BH_uK02ASk4",
                 description: "Multi-level caches, cache coherence protocols, and memory consistency models in multiprocessor systems.",
@@ -198,6 +209,31 @@
                 watched: false
             }
         ];
+
+        // Animation Trigger (Matches Index/Common JS)
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-up').forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
     </script>
     <script src="script.js"></script>
 </body>

@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            background: linear-gradient(135deg, #27ae60, #2ecc71, #1d2b3a);
-        }
+        /* Optional: Specific override for C Programming active state if desired */
+        /* .category-btn.active { background-color: var(--accent); } */
     </style>
 </head>
 <body>
+
     <nav class="navbar">
         <div class="nav-container">
             <a href="./index.html" class="nav-brand">
@@ -26,19 +26,19 @@
     </nav>
 
     <div class="container">
-        <header>
-            <h1><i class="fas fa-code"></i> C Programming Video Library</h1>
+        <header class="fade-up">
+            <h1><i class="fas fa-code" style="color: var(--accent);"></i> C Programming</h1>
             <p class="subtitle">GATE Free Crash Course covering C Programming fundamentals, data types, operators, control flow, functions, arrays, pointers, and more</p>
         </header>
         
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search for C programming topics...">
+        <div class="search-container fade-up">
+            <input type="text" id="searchInput" placeholder="Search for C topics (e.g., Pointers, Arrays, Structs)...">
             <div class="search-icon">
                 <i class="fas fa-search"></i>
             </div>
         </div>
         
-        <div class="categories">
+        <div class="categories fade-up">
             <button class="category-btn active" data-category="all">All Videos</button>
             <button class="category-btn" data-category="intro">Introduction</button>
             <button class="category-btn" data-category="datatypes">Data Types</button>
@@ -49,7 +49,8 @@
             <button class="category-btn" data-category="advanced">Advanced Topics</button>
         </div>
         
-        <div class="main-content">
+        <div class="main-content fade-up">
+            
             <div class="video-player-container">
                 <div class="video-player">
                     <iframe id="mainVideo" src="https://www.youtube.com/embed/hMLKVkJGV5Q" 
@@ -64,47 +65,202 @@
                         <span id="mainVideoLecture"><i class="fas fa-book-open"></i> Lecture 1</span>
                         <span id="mainVideoCategory"><i class="fas fa-folder"></i> Introduction</span>
                     </div>
-                    <p class="video-desc" id="mainVideoDesc">Introduction to C programming language, its history, features, and basic structure of a C program.</p>
+                    <p class="video-desc" id="mainVideoDesc">Introduction to C programming language, its history, features, and basic structure of a C program. </p>
                 </div>
             </div>
             
             <div class="video-list-container">
                 <h3 class="video-list-title">All Lectures</h3>
-                <div class="video-list" id="videoList"></div>
+                <div class="video-list" id="videoList">
+                    </div>
             </div>
         </div>
         
         <footer>
-            <p>© 2024 C Programming Video Library | GATE Free Crash Course</p>
-            <div class="footer-links">
-                <a href="./index.html">Home</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-                <a href="#privacy">Privacy Policy</a>
+            <div class="footer-content" style="text-align: center;">
+                <p>© 2024 C Programming Video Library | GATE Free Crash Course</p>
+                <div class="footer-links" style="display: flex; justify-content: center; gap: 20px;">
+                    <a href="./index.html">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#privacy">Privacy Policy</a>
+                </div>
             </div>
         </footer>
     </div>
 
     <script>
+        // Video Data
         const videos = [
-            { id: 1, title: "C Programming 01 | Introduction to C Programming (Part 1)", category: "intro", youtubeId: "hMLKVkJGV5Q", description: "Introduction to C programming language, its history, features, and basic structure of a C program.", watched: false },
-            { id: 2, title: "C Programming 02 | Data Types", category: "datatypes", youtubeId: "lqbntQ_svOs", description: "Understanding basic data types in C including integers, floats, characters, and their modifiers.", watched: false },
+            { id: 1, title: "C Programming 01 | Introduction to C Programming (Part 1)", category: "intro", youtubeId: "hMLKVkJGV5Q", description: "Introduction to C programming language, its history, features, and basic structure of a C program. ", watched: false },
+            { id: 2, title: "C Programming 02 | Data Types", category: "datatypes", youtubeId: "lqbntQ_svOs", description: "Understanding basic data types in C including integers, floats, characters, and their modifiers. ", watched: false },
             { id: 3, title: "C programming 03 | Data types - 02", category: "datatypes", youtubeId: "IWJECcYHFc8", description: "Advanced data types in C including derived data types, type conversion, and storage classes.", watched: false },
             { id: 4, title: "C Programming 04 | Operators", category: "operators", youtubeId: "czx4neIVRGw", description: "Introduction to operators in C including arithmetic, relational, and logical operators.", watched: false },
-            { id: 5, title: "C Programming 05 | Operators -2", category: "operators", youtubeId: "cLyPzUbx3xo", description: "Understanding bitwise operators, assignment operators, and operator precedence in C.", watched: false },
+            { id: 5, title: "C Programming 05 | Operators -2", category: "operators", youtubeId: "cLyPzUbx3xo", description: "Understanding bitwise operators, assignment operators, and operator precedence in C. ", watched: false },
             { id: 6, title: "C Programming 06 | Operators - 3", category: "operators", youtubeId: "uy75shhPQOA", description: "Advanced operator concepts including conditional operator, comma operator, and sizeof operator.", watched: false },
-            { id: 7, title: "C programming 07 | Control Flow Statements -1", category: "control", youtubeId: "L1VWEjdwzto", description: "Understanding control flow statements in C including if, if-else, and nested if statements.", watched: false },
+            { id: 7, title: "C programming 07 | Control Flow Statements -1", category: "control", youtubeId: "L1VWEjdwzto", description: "Understanding control flow statements in C including if, if-else, and nested if statements. ", watched: false },
             { id: 8, title: "C Programming 08 | Control Flow Statements - 2", category: "control", youtubeId: "1eBLfPLcPLo", description: "Exploring switch statements, break, and continue statements for control flow in C.", watched: false },
-            { id: 9, title: "C programming 09 | Control Flow Statements -3", category: "control", youtubeId: "2FzNccxPhV0", description: "Understanding loops in C including for, while, and do-while loops with examples.", watched: false },
+            { id: 9, title: "C programming 09 | Control Flow Statements -3", category: "control", youtubeId: "2FzNccxPhV0", description: "Understanding loops in C including for, while, and do-while loops with examples. ", watched: false },
             { id: 10, title: "C Programming 10 | Function and Storage Classes", category: "functions", youtubeId: "jtiaEh6tLVI", description: "Introduction to functions in C, function declaration, definition, and storage classes.", watched: false },
-            { id: 11, title: "C Programming 11 | Recursion", category: "functions", youtubeId: "d00yBYccOcs", description: "Understanding recursion in C, recursive functions, and solving problems using recursion.", watched: false },
-            { id: 12, title: "C Programming 12 | Arrays and Pointers - 1", category: "arrays", youtubeId: "DXeDnmF0ONE", description: "Introduction to arrays in C, array declaration, initialization, and basic operations.", watched: false },
-            { id: 13, title: "C Programming 13 | Arrays and Pointers -2", category: "arrays", youtubeId: "EnH1q8i5FoI", description: "Understanding pointers in C, pointer arithmetic, and relationship between arrays and pointers.", watched: false },
-            { id: 14, title: "C Programming 14 | Dynamic Memory Allocation", category: "advanced", youtubeId: "eowTsqDql18", description: "Dynamic memory allocation in C using malloc, calloc, realloc, and free functions.", watched: false },
+            { id: 11, title: "C Programming 11 | Recursion", category: "functions", youtubeId: "d00yBYccOcs", description: "Understanding recursion in C, recursive functions, and solving problems using recursion. ", watched: false },
+            { id: 12, title: "C Programming 12 | Arrays and Pointers - 1", category: "arrays", youtubeId: "DXeDnmF0ONE", description: "Introduction to arrays in C, array declaration, initialization, and basic operations. ", watched: false },
+            { id: 13, title: "C Programming 13 | Arrays and Pointers -2", category: "arrays", youtubeId: "EnH1q8i5FoI", description: "Understanding pointers in C, pointer arithmetic, and relationship between arrays and pointers. ", watched: false },
+            { id: 14, title: "C Programming 14 | Dynamic Memory Allocation", category: "advanced", youtubeId: "eowTsqDql18", description: "Dynamic memory allocation in C using malloc, calloc, realloc, and free functions. ", watched: false },
             { id: 15, title: "C Programming 15 | Strings", category: "advanced", youtubeId: "fkD8vL8c9m4", description: "Working with strings in C, string functions, and character array manipulation.", watched: false },
-            { id: 16, title: "C Programming 16 | Structure and Union", category: "advanced", youtubeId: "SqZRBNnQlWA", description: "Understanding structures and unions in C, their declaration, and practical applications.", watched: false }
+            { id: 16, title: "C Programming 16 | Structure and Union", category: "advanced", youtubeId: "SqZRBNnQlWA", description: "Understanding structures and unions in C, their declaration, and practical applications. ", watched: false }
         ];
+
+        // DOM Elements
+        const mainVideo = document.getElementById('mainVideo');
+        const mainVideoTitle = document.getElementById('mainVideoTitle');
+        const mainVideoLecture = document.getElementById('mainVideoLecture');
+        const mainVideoCategory = document.getElementById('mainVideoCategory');
+        const mainVideoDesc = document.getElementById('mainVideoDesc');
+        const videoList = document.getElementById('videoList');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const searchInput = document.getElementById('searchInput');
+
+        // Helper: Friendly Category Name
+        function getCategoryName(category) {
+            const map = {
+                'intro': 'Introduction',
+                'datatypes': 'Data Types',
+                'operators': 'Operators',
+                'control': 'Control Flow',
+                'functions': 'Functions',
+                'arrays': 'Arrays & Pointers',
+                'advanced': 'Advanced Topics'
+            };
+            return map[category] || 'General';
+        }
+
+        // Display Video List
+        function displayVideoList(videosToDisplay) {
+            videoList.innerHTML = '';
+            
+            videosToDisplay.forEach(video => {
+                const videoItem = document.createElement('div');
+                videoItem.className = 'video-item';
+                videoItem.setAttribute('data-category', video.category);
+                videoItem.setAttribute('data-id', video.id);
+                
+                videoItem.innerHTML = `
+                    <div class="video-thumb">
+                        <iframe src="https://www.youtube.com/embed/${video.youtubeId}" 
+                                title="${video.title}" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-item-info">
+                        <div class="video-item-title">${video.title}</div>
+                        <div class="video-item-meta">
+                            <span>Lecture ${video.id}</span>
+                            <span>${getCategoryName(video.category)}</span>
+                        </div>
+                    </div>
+                `;
+                
+                // Click Event
+                videoItem.addEventListener('click', () => {
+                    updateMainPlayer(video);
+                });
+                
+                videoList.appendChild(videoItem);
+            });
+        }
+
+        // Update Main Player
+        function updateMainPlayer(video) {
+            // Update Active State
+            document.querySelectorAll('.video-item').forEach(item => item.classList.remove('active'));
+            const activeItem = document.querySelector(`.video-item[data-id="${video.id}"]`);
+            if(activeItem) activeItem.classList.add('active');
+
+            // Update Content
+            mainVideo.src = `https://www.youtube.com/embed/${video.youtubeId}`;
+            mainVideoTitle.textContent = video.title;
+            mainVideoLecture.innerHTML = `<i class="fas fa-book-open"></i> Lecture ${video.id}`;
+            mainVideoCategory.innerHTML = `<i class="fas fa-folder"></i> ${getCategoryName(video.category)}`;
+            mainVideoDesc.textContent = video.description;
+
+            // Mobile Scroll
+            if(window.innerWidth < 1024) {
+                mainVideo.scrollIntoView({behavior: "smooth"});
+            }
+        }
+
+        // Filter Logic
+        function filterVideos(category) {
+            if (category === 'all') return videos;
+            return videos.filter(v => v.category === category);
+        }
+
+        // Search Logic
+        function searchVideos(query) {
+            const lower = query.toLowerCase();
+            return videos.filter(v => 
+                v.title.toLowerCase().includes(lower) || 
+                v.description.toLowerCase().includes(lower)
+            );
+        }
+
+        // Category Buttons
+        categoryButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const cat = btn.getAttribute('data-category');
+                const filtered = filterVideos(cat);
+                displayVideoList(filtered);
+
+                if(filtered.length > 0) updateMainPlayer(filtered[0]);
+            });
+        });
+
+        // Search Input
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.trim();
+            let results;
+            
+            if(query === '') {
+                const activeCat = document.querySelector('.category-btn.active').getAttribute('data-category');
+                results = filterVideos(activeCat);
+            } else {
+                results = searchVideos(query);
+            }
+            
+            displayVideoList(results);
+            if(results.length > 0) updateMainPlayer(results[0]);
+        });
+
+        // Initialize & Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animation Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-up').forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Initial Load
+            displayVideoList(videos);
+            // Highlight first video
+            const firstItem = document.querySelector('.video-item');
+            if(firstItem) firstItem.classList.add('active');
+        });
     </script>
-    <script src="script.js"></script>
 </body>
 </html>

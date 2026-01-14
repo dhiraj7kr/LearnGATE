@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            background: linear-gradient(135deg, #e74c3c, #c0392b, #fdbb2d);
-        }
+        /* Optional: Specific override for Discrete Math active state if desired */
+        /* .category-btn.active { background-color: var(--accent); } */
     </style>
 </head>
 <body>
+
     <nav class="navbar">
         <div class="nav-container">
             <a href="./index.html" class="nav-brand">
@@ -26,19 +26,19 @@
     </nav>
 
     <div class="container">
-        <header>
-            <h1><i class="fas fa-square-root-alt"></i> Discrete Mathematics Video Library</h1>
+        <header class="fade-up">
+            <h1><i class="fas fa-square-root-alt" style="color: var(--accent);"></i> Discrete Mathematics</h1>
             <p class="subtitle">A comprehensive collection of Discrete Mathematics lectures covering Graph Theory, Logic, Set Theory, and Combinatorics for GATE preparation</p>
         </header>
         
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search for discrete mathematics topics...">
+        <div class="search-container fade-up">
+            <input type="text" id="searchInput" placeholder="Search for discrete topics (e.g., Graph Theory, Logic, Sets)...">
             <div class="search-icon">
                 <i class="fas fa-search"></i>
             </div>
         </div>
         
-        <div class="categories">
+        <div class="categories fade-up">
             <button class="category-btn active" data-category="all">All Videos</button>
             <button class="category-btn" data-category="graph">Graph Theory</button>
             <button class="category-btn" data-category="logic">Logic</button>
@@ -46,7 +46,8 @@
             <button class="category-btn" data-category="combinatorics">Combinatorics</button>
         </div>
         
-        <div class="main-content">
+        <div class="main-content fade-up">
+            
             <div class="video-player-container">
                 <div class="video-player">
                     <iframe id="mainVideo" src="https://www.youtube.com/embed/YZmc5sk4kHo" 
@@ -61,53 +62,208 @@
                         <span id="mainVideoLecture"><i class="fas fa-book-open"></i> Lecture 1</span>
                         <span id="mainVideoCategory"><i class="fas fa-folder"></i> Graph Theory</span>
                     </div>
-                    <p class="video-desc" id="mainVideoDesc">Introduction to graph theory, covering basic concepts, terminology, and types of graphs.</p>
+                    <p class="video-desc" id="mainVideoDesc">Introduction to graph theory, covering basic concepts, terminology, and types of graphs. 
+
+[Image of simple graph vs multigraph]
+</p>
                 </div>
             </div>
             
             <div class="video-list-container">
                 <h3 class="video-list-title">All Lectures</h3>
-                <div class="video-list" id="videoList"></div>
+                <div class="video-list" id="videoList">
+                    </div>
             </div>
         </div>
         
         <footer>
-            <p>© 2024 Discrete Mathematics Video Library | Educational Resource</p>
-            <div class="footer-links">
-                <a href="./index.html">Home</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-                <a href="#privacy">Privacy Policy</a>
+            <div class="footer-content" style="text-align: center;">
+                <p>© 2024 Discrete Mathematics Video Library | Educational Resource</p>
+                <div class="footer-links" style="display: flex; justify-content: center; gap: 20px;">
+                    <a href="./index.html">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#privacy">Privacy Policy</a>
+                </div>
             </div>
         </footer>
     </div>
 
     <script>
+        // Video Data
         const videos = [
-            { id: 1, title: "Graph Theory - Basics of Graphs", category: "graph", youtubeId: "YZmc5sk4kHo", description: "Introduction to graph theory, covering basic concepts, terminology, and types of graphs." },
-            { id: 2, title: "Graph Theory - Types of Graphs", category: "graph", youtubeId: "Vv77e5j1apk", description: "Exploring different types of graphs including directed, undirected, weighted, and bipartite graphs." },
-            { id: 3, title: "Graph Theory - Connectivity in Graphs Part 1", category: "graph", youtubeId: "d-P5F-ItMKc", description: "Understanding connectivity in graphs, paths, cycles, and connected components." },
+            { id: 1, title: "Graph Theory - Basics of Graphs", category: "graph", youtubeId: "YZmc5sk4kHo", description: "Introduction to graph theory, covering basic concepts, terminology, and types of graphs. [Image of simple graph vs multigraph] " },
+            { id: 2, title: "Graph Theory - Types of Graphs", category: "graph", youtubeId: "Vv77e5j1apk", description: "Exploring different types of graphs including directed, undirected, weighted, and bipartite graphs. " },
+            { id: 3, title: "Graph Theory - Connectivity in Graphs Part 1", category: "graph", youtubeId: "d-P5F-ItMKc", description: "Understanding connectivity in graphs, paths, cycles, and connected components. " },
             { id: 4, title: "Graph Theory - Connectivity in Graphs Part 2", category: "graph", youtubeId: "vc_VBPPYB6c", description: "Advanced concepts in graph connectivity including cut vertices and bridges." },
-            { id: 5, title: "Graph Theory - Advance Topics in Graphs Part 1", category: "graph", youtubeId: "tlJxR-x-0YI", description: "Introduction to advanced graph theory topics including planar graphs and graph coloring." },
-            { id: 6, title: "Advance Topics in Graphs Part 2", category: "graph", youtubeId: "Q7KRfXx5jLQ", description: "Continuing with advanced graph theory concepts, covering Eulerian and Hamiltonian paths." },
-            { id: 7, title: "Logic - Propositional Logic", category: "logic", youtubeId: "7zjhic8uTR4", description: "Fundamentals of propositional logic, logical connectives, and truth tables." },
+            { id: 5, title: "Graph Theory - Advance Topics in Graphs Part 1", category: "graph", youtubeId: "tlJxR-x-0YI", description: "Introduction to advanced graph theory topics including planar graphs and graph coloring. " },
+            { id: 6, title: "Advance Topics in Graphs Part 2", category: "graph", youtubeId: "Q7KRfXx5jLQ", description: "Continuing with advanced graph theory concepts, covering Eulerian and Hamiltonian paths. " },
+            { id: 7, title: "Logic - Propositional Logic", category: "logic", youtubeId: "7zjhic8uTR4", description: "Fundamentals of propositional logic, logical connectives, and truth tables. " },
             { id: 8, title: "Logic Inference Rule", category: "logic", youtubeId: "a5HbV3AKE9I", description: "Understanding logical inference rules and their application in logical reasoning." },
             { id: 9, title: "Logic - Predicate Logic", category: "logic", youtubeId: "VA_5ho3BSyw", description: "Introduction to predicate logic, quantifiers, and their use in mathematical reasoning." },
             { id: 10, title: "Logic - Quantifier Part 1", category: "logic", youtubeId: "fjgo2FEBJRY", description: "Detailed exploration of universal and existential quantifiers in predicate logic." },
             { id: 11, title: "Logic - Quantifier Part 2", category: "logic", youtubeId: "Y5SFid7aons", description: "Advanced topics in quantifiers, nested quantifiers, and their applications." },
-            { id: 12, title: "Set Theory - Basics Of Set Theory", category: "set", youtubeId: "TfF9tK_xzKM", description: "Introduction to set theory, covering sets, subsets, and basic set operations." },
-            { id: 13, title: "Set Theory - Functions And Its Types", category: "set", youtubeId: "xSsoNHpWO5A", description: "Understanding functions, their properties, and different types of functions." },
+            { id: 12, title: "Set Theory - Basics Of Set Theory", category: "set", youtubeId: "TfF9tK_xzKM", description: "Introduction to set theory, covering sets, subsets, and basic set operations. " },
+            { id: 13, title: "Set Theory - Functions And Its Types", category: "set", youtubeId: "xSsoNHpWO5A", description: "Understanding functions, their properties, and different types of functions. " },
             { id: 14, title: "Set Theory - Relations Part 1", category: "set", youtubeId: "m7zRKQ8DKjE", description: "Introduction to relations, their properties, and representation of relations." },
             { id: 15, title: "Set Theory - Relations Part 2", category: "set", youtubeId: "y3UugFZ7S4w", description: "Advanced topics in relations including equivalence relations and partial orders." },
             { id: 16, title: "Set Theory - Group Theory", category: "set", youtubeId: "zKADDnLPgkA", description: "Introduction to group theory, covering groups, subgroups, and group properties." },
-            { id: 17, title: "Combinatorics - Basics of Counting", category: "combinatorics", youtubeId: "kEU18I-WTWI", description: "Fundamental counting principles, permutations, and combinations." },
+            { id: 17, title: "Combinatorics - Basics of Counting", category: "combinatorics", youtubeId: "kEU18I-WTWI", description: "Fundamental counting principles, permutations, and combinations. " },
             { id: 18, title: "Combinatorics - Combination With Repetition", category: "combinatorics", youtubeId: "_8firmX85Ks", description: "Understanding combinations with repetition and their applications." },
-            { id: 19, title: "Combinatorics - Inclusion Exclusion / Derangement", category: "combinatorics", youtubeId: "e0JBSaQ86TA", description: "Principle of inclusion-exclusion and derangements in combinatorics." },
-            { id: 20, title: "Combinatorics - Pigeonhole Principle", category: "combinatorics", youtubeId: "DaMQjj1lBWo", description: "Understanding and applying the pigeonhole principle in combinatorial problems." },
+            { id: 19, title: "Combinatorics - Inclusion Exclusion / Derangement", category: "combinatorics", youtubeId: "e0JBSaQ86TA", description: "Principle of inclusion-exclusion and derangements in combinatorics. " },
+            { id: 20, title: "Combinatorics - Pigeonhole Principle", category: "combinatorics", youtubeId: "DaMQjj1lBWo", description: "Understanding and applying the pigeonhole principle in combinatorial problems. " },
             { id: 21, title: "Combinatorics - Generating Function", category: "combinatorics", youtubeId: "ZEJGeQJ51hg", description: "Introduction to generating functions and their use in solving combinatorial problems." },
             { id: 22, title: "Combinatorics - Recurrence Relation", category: "combinatorics", youtubeId: "KoamrAUDtPw", description: "Understanding recurrence relations and their solutions in combinatorics." }
         ];
+
+        // DOM Elements
+        const mainVideo = document.getElementById('mainVideo');
+        const mainVideoTitle = document.getElementById('mainVideoTitle');
+        const mainVideoLecture = document.getElementById('mainVideoLecture');
+        const mainVideoCategory = document.getElementById('mainVideoCategory');
+        const mainVideoDesc = document.getElementById('mainVideoDesc');
+        const videoList = document.getElementById('videoList');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const searchInput = document.getElementById('searchInput');
+
+        // Helper: Friendly Category Name
+        function getCategoryName(category) {
+            const map = {
+                'graph': 'Graph Theory',
+                'logic': 'Logic',
+                'set': 'Set Theory',
+                'combinatorics': 'Combinatorics'
+            };
+            return map[category] || 'General';
+        }
+
+        // Display Video List
+        function displayVideoList(videosToDisplay) {
+            videoList.innerHTML = '';
+            
+            videosToDisplay.forEach(video => {
+                const videoItem = document.createElement('div');
+                videoItem.className = 'video-item';
+                videoItem.setAttribute('data-category', video.category);
+                videoItem.setAttribute('data-id', video.id);
+                
+                videoItem.innerHTML = `
+                    <div class="video-thumb">
+                        <iframe src="https://www.youtube.com/embed/${video.youtubeId}" 
+                                title="${video.title}" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-item-info">
+                        <div class="video-item-title">${video.title}</div>
+                        <div class="video-item-meta">
+                            <span>Lecture ${video.id}</span>
+                            <span>${getCategoryName(video.category)}</span>
+                        </div>
+                    </div>
+                `;
+                
+                // Click Event
+                videoItem.addEventListener('click', () => {
+                    updateMainPlayer(video);
+                });
+                
+                videoList.appendChild(videoItem);
+            });
+        }
+
+        // Update Main Player
+        function updateMainPlayer(video) {
+            // Update Active State
+            document.querySelectorAll('.video-item').forEach(item => item.classList.remove('active'));
+            const activeItem = document.querySelector(`.video-item[data-id="${video.id}"]`);
+            if(activeItem) activeItem.classList.add('active');
+
+            // Update Content
+            mainVideo.src = `https://www.youtube.com/embed/${video.youtubeId}`;
+            mainVideoTitle.textContent = video.title;
+            mainVideoLecture.innerHTML = `<i class="fas fa-book-open"></i> Lecture ${video.id}`;
+            mainVideoCategory.innerHTML = `<i class="fas fa-folder"></i> ${getCategoryName(video.category)}`;
+            mainVideoDesc.textContent = video.description;
+
+            // Mobile Scroll
+            if(window.innerWidth < 1024) {
+                mainVideo.scrollIntoView({behavior: "smooth"});
+            }
+        }
+
+        // Filter Logic
+        function filterVideos(category) {
+            if (category === 'all') return videos;
+            return videos.filter(v => v.category === category);
+        }
+
+        // Search Logic
+        function searchVideos(query) {
+            const lower = query.toLowerCase();
+            return videos.filter(v => 
+                v.title.toLowerCase().includes(lower) || 
+                v.description.toLowerCase().includes(lower)
+            );
+        }
+
+        // Category Buttons
+        categoryButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const cat = btn.getAttribute('data-category');
+                const filtered = filterVideos(cat);
+                displayVideoList(filtered);
+
+                if(filtered.length > 0) updateMainPlayer(filtered[0]);
+            });
+        });
+
+        // Search Input
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.trim();
+            let results;
+            
+            if(query === '') {
+                const activeCat = document.querySelector('.category-btn.active').getAttribute('data-category');
+                results = filterVideos(activeCat);
+            } else {
+                results = searchVideos(query);
+            }
+            
+            displayVideoList(results);
+            if(results.length > 0) updateMainPlayer(results[0]);
+        });
+
+        // Initialize & Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animation Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-up').forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Initial Load
+            displayVideoList(videos);
+            // Highlight first video
+            const firstItem = document.querySelector('.video-item');
+            if(firstItem) firstItem.classList.add('active');
+        });
     </script>
-    <script src="script.js"></script>
 </body>
 </html>

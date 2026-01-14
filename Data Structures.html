@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            background: linear-gradient(135deg, #1abc9c, #16a085, #2c3e50);
-        }
+        /* Optional: Specific override for Data Structures active state if desired */
+        /* .category-btn.active { background-color: var(--accent); } */
     </style>
 </head>
 <body>
+
     <nav class="navbar">
         <div class="nav-container">
             <a href="./index.html" class="nav-brand">
@@ -26,19 +26,19 @@
     </nav>
 
     <div class="container">
-        <header>
-            <h1><i class="fas fa-database"></i> Data Structures</h1>
+        <header class="fade-up">
+            <h1><i class="fas fa-database" style="color: var(--accent);"></i> Data Structures</h1>
             <p class="subtitle">GATE 2026 Crash Course covering Arrays, Linked Lists, Stacks, Queues, Trees, and Hashing with practical implementations</p>
         </header>
         
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search for data structures topics...">
+        <div class="search-container fade-up">
+            <input type="text" id="searchInput" placeholder="Search for topics (e.g., Linked List, AVL Tree, Hashing)...">
             <div class="search-icon">
                 <i class="fas fa-search"></i>
             </div>
         </div>
         
-        <div class="categories">
+        <div class="categories fade-up">
             <button class="category-btn active" data-category="all">All Videos</button>
             <button class="category-btn" data-category="intro">Introduction</button>
             <button class="category-btn" data-category="arrays">Arrays</button>
@@ -48,7 +48,8 @@
             <button class="category-btn" data-category="hashing">Hashing</button>
         </div>
         
-        <div class="main-content">
+        <div class="main-content fade-up">
+            
             <div class="video-player-container">
                 <div class="video-player">
                     <iframe id="mainVideo" src="https://www.youtube.com/embed/GicSPlosq-I" 
@@ -63,119 +64,196 @@
                         <span id="mainVideoLecture"><i class="fas fa-book-open"></i> Lecture 1</span>
                         <span id="mainVideoCategory"><i class="fas fa-folder"></i> Introduction</span>
                     </div>
-                    <p class="video-desc" id="mainVideoDesc">Introduction to data structures, their importance, classification, and overview of the course content for GATE 2026 preparation.</p>
+                    <p class="video-desc" id="mainVideoDesc">Introduction to data structures, their importance, classification, and overview of the course content for GATE 2026 preparation. </p>
                 </div>
             </div>
             
             <div class="video-list-container">
                 <h3 class="video-list-title">All Lectures</h3>
-                <div class="video-list" id="videoList"></div>
+                <div class="video-list" id="videoList">
+                    </div>
             </div>
         </div>
         
         <footer>
-            <p>© 2024 Data Structures | GATE 2026 Crash Course</p>
-            <div class="footer-links">
-                <a href="./index.html">Home</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-                <a href="#privacy">Privacy Policy</a>
+            <div class="footer-content" style="text-align: center;">
+                <p>© 2024 Data Structures | GATE 2026 Crash Course</p>
+                <div class="footer-links" style="display: flex; justify-content: center; gap: 20px;">
+                    <a href="./index.html">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#privacy">Privacy Policy</a>
+                </div>
             </div>
         </footer>
     </div>
 
     <script>
+        // Video Data
         const videos = [
-            {
-                id: 1,
-                title: "Data Structures 01 | Introduction to Data Structures",
-                category: "intro",
-                youtubeId: "GicSPlosq-I",
-                description: "Introduction to data structures, their importance, classification, and overview of the course content for GATE 2026 preparation.",
-                watched: false
-            },
-            {
-                id: 2,
-                title: "Data Structures 02 | Arrays Part 01",
-                category: "arrays",
-                youtubeId: "55W7AOLL3-U",
-                description: "Fundamentals of arrays, declaration, initialization, basic operations, and time complexity analysis.",
-                watched: false
-            },
-            {
-                id: 3,
-                title: "Data Structures 03 | Arrays Part 02",
-                category: "arrays",
-                youtubeId: "HDolI680pr8",
-                description: "Advanced array operations, multidimensional arrays, dynamic arrays, and memory management concepts.",
-                watched: false
-            },
-            {
-                id: 4,
-                title: "Data Structures 04 | Linked List Part 01",
-                category: "linked",
-                youtubeId: "v7emeyxACjE",
-                description: "Introduction to linked lists, singly linked list implementation, traversal, insertion and deletion operations.",
-                watched: false
-            },
-            {
-                id: 5,
-                title: "Data Structures 05 | Linked List Part 02",
-                category: "linked",
-                youtubeId: "iU-WT3DPSf4",
-                description: "Advanced linked list concepts including circular linked lists, doubly linked lists, and complex operations.",
-                watched: false
-            },
-            {
-                id: 6,
-                title: "Data Structures 06 | Stack and Queue Part 1",
-                category: "stack",
-                youtubeId: "VnZPAS0Cfas",
-                description: "Fundamentals of stack and queue data structures, operations, array and linked list implementations.",
-                watched: false
-            },
-            {
-                id: 7,
-                title: "Data Structures 07 | Stack and Queue Part 2",
-                category: "stack",
-                youtubeId: "3STggS0LVTQ",
-                description: "Advanced stack and queue implementations, circular queues, priority queues, and real-world applications.",
-                watched: false
-            },
-            {
-                id: 8,
-                title: "Data Structures 08 | Trees Part 01",
-                category: "trees",
-                youtubeId: "jFbpavkuF6A",
-                description: "Introduction to tree data structure, terminology, binary trees, and basic tree operations and properties.",
-                watched: false
-            },
-            {
-                id: 9,
-                title: "Data Structures 09 | Trees Part 02",
-                category: "trees",
-                youtubeId: "bj3Z5SPF70I",
-                description: "Binary search trees, tree traversal algorithms (inorder, preorder, postorder), and tree operations implementation.",
-                watched: false
-            },
-            {
-                id: 10,
-                title: "Data Structures 10 | Trees Part 03",
-                category: "trees",
-                youtubeId: "LYek8Rhl-o0",
-                description: "Advanced tree concepts including AVL trees, rotations, and balancing operations for efficient data storage and retrieval.",
-                watched: false
-            },
-            {
-                id: 11,
-                title: "Data Structures 11 | Hashing in Data Structure Explained",
-                category: "hashing",
-                youtubeId: "rn-Yo162kjU",
-                description: "Comprehensive explanation of hashing techniques, hash functions, collision resolution methods, and applications in data structures.",
-                watched: false
-            }
+            { id: 1, title: "Data Structures 01 | Introduction to Data Structures", category: "intro", youtubeId: "GicSPlosq-I", description: "Introduction to data structures, their importance, classification, and overview of the course content for GATE 2026 preparation. ", watched: false },
+            { id: 2, title: "Data Structures 02 | Arrays Part 01", category: "arrays", youtubeId: "55W7AOLL3-U", description: "Fundamentals of arrays, declaration, initialization, basic operations, and time complexity analysis. ", watched: false },
+            { id: 3, title: "Data Structures 03 | Arrays Part 02", category: "arrays", youtubeId: "HDolI680pr8", description: "Advanced array operations, multidimensional arrays, dynamic arrays, and memory management concepts.", watched: false },
+            { id: 4, title: "Data Structures 04 | Linked List Part 01", category: "linked", youtubeId: "v7emeyxACjE", description: "Introduction to linked lists, singly linked list implementation, traversal, insertion and deletion operations. ", watched: false },
+            { id: 5, title: "Data Structures 05 | Linked List Part 02", category: "linked", youtubeId: "iU-WT3DPSf4", description: "Advanced linked list concepts including circular linked lists, doubly linked lists, and complex operations. ", watched: false },
+            { id: 6, title: "Data Structures 06 | Stack and Queue Part 1", category: "stack", youtubeId: "VnZPAS0Cfas", description: "Fundamentals of stack and queue data structures, operations, array and linked list implementations. ", watched: false },
+            { id: 7, title: "Data Structures 07 | Stack and Queue Part 2", category: "stack", youtubeId: "3STggS0LVTQ", description: "Advanced stack and queue implementations, circular queues, priority queues, and real-world applications.", watched: false },
+            { id: 8, title: "Data Structures 08 | Trees Part 01", category: "trees", youtubeId: "jFbpavkuF6A", description: "Introduction to tree data structure, terminology, binary trees, and basic tree operations and properties. ", watched: false },
+            { id: 9, title: "Data Structures 09 | Trees Part 02", category: "trees", youtubeId: "bj3Z5SPF70I", description: "Binary search trees, tree traversal algorithms (inorder, preorder, postorder), and tree operations implementation.", watched: false },
+            { id: 10, title: "Data Structures 10 | Trees Part 03", category: "trees", youtubeId: "LYek8Rhl-o0", description: "Advanced tree concepts including AVL trees, rotations, and balancing operations for efficient data storage and retrieval. ", watched: false },
+            { id: 11, title: "Data Structures 11 | Hashing in Data Structure Explained", category: "hashing", youtubeId: "rn-Yo162kjU", description: "Comprehensive explanation of hashing techniques, hash functions, collision resolution methods, and applications in data structures. ", watched: false }
         ];
+
+        // DOM Elements
+        const mainVideo = document.getElementById('mainVideo');
+        const mainVideoTitle = document.getElementById('mainVideoTitle');
+        const mainVideoLecture = document.getElementById('mainVideoLecture');
+        const mainVideoCategory = document.getElementById('mainVideoCategory');
+        const mainVideoDesc = document.getElementById('mainVideoDesc');
+        const videoList = document.getElementById('videoList');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const searchInput = document.getElementById('searchInput');
+
+        // Helper: Friendly Category Name
+        function getCategoryName(category) {
+            const map = {
+                'intro': 'Introduction',
+                'arrays': 'Arrays',
+                'linked': 'Linked Lists',
+                'stack': 'Stacks & Queues',
+                'trees': 'Trees',
+                'hashing': 'Hashing'
+            };
+            return map[category] || 'General';
+        }
+
+        // Display Video List
+        function displayVideoList(videosToDisplay) {
+            videoList.innerHTML = '';
+            
+            videosToDisplay.forEach(video => {
+                const videoItem = document.createElement('div');
+                videoItem.className = 'video-item';
+                videoItem.setAttribute('data-category', video.category);
+                videoItem.setAttribute('data-id', video.id);
+                
+                videoItem.innerHTML = `
+                    <div class="video-thumb">
+                        <iframe src="https://www.youtube.com/embed/${video.youtubeId}" 
+                                title="${video.title}" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-item-info">
+                        <div class="video-item-title">${video.title}</div>
+                        <div class="video-item-meta">
+                            <span>Lecture ${video.id}</span>
+                            <span>${getCategoryName(video.category)}</span>
+                        </div>
+                    </div>
+                `;
+                
+                // Click Event
+                videoItem.addEventListener('click', () => {
+                    updateMainPlayer(video);
+                });
+                
+                videoList.appendChild(videoItem);
+            });
+        }
+
+        // Update Main Player
+        function updateMainPlayer(video) {
+            // Update Active State
+            document.querySelectorAll('.video-item').forEach(item => item.classList.remove('active'));
+            const activeItem = document.querySelector(`.video-item[data-id="${video.id}"]`);
+            if(activeItem) activeItem.classList.add('active');
+
+            // Update Content
+            mainVideo.src = `https://www.youtube.com/embed/${video.youtubeId}`;
+            mainVideoTitle.textContent = video.title;
+            mainVideoLecture.innerHTML = `<i class="fas fa-book-open"></i> Lecture ${video.id}`;
+            mainVideoCategory.innerHTML = `<i class="fas fa-folder"></i> ${getCategoryName(video.category)}`;
+            mainVideoDesc.textContent = video.description;
+
+            // Mobile Scroll
+            if(window.innerWidth < 1024) {
+                mainVideo.scrollIntoView({behavior: "smooth"});
+            }
+        }
+
+        // Filter Logic
+        function filterVideos(category) {
+            if (category === 'all') return videos;
+            return videos.filter(v => v.category === category);
+        }
+
+        // Search Logic
+        function searchVideos(query) {
+            const lower = query.toLowerCase();
+            return videos.filter(v => 
+                v.title.toLowerCase().includes(lower) || 
+                v.description.toLowerCase().includes(lower)
+            );
+        }
+
+        // Category Buttons
+        categoryButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const cat = btn.getAttribute('data-category');
+                const filtered = filterVideos(cat);
+                displayVideoList(filtered);
+
+                if(filtered.length > 0) updateMainPlayer(filtered[0]);
+            });
+        });
+
+        // Search Input
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.trim();
+            let results;
+            
+            if(query === '') {
+                const activeCat = document.querySelector('.category-btn.active').getAttribute('data-category');
+                results = filterVideos(activeCat);
+            } else {
+                results = searchVideos(query);
+            }
+            
+            displayVideoList(results);
+            if(results.length > 0) updateMainPlayer(results[0]);
+        });
+
+        // Initialize & Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animation Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-up').forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Initial Load
+            displayVideoList(videos);
+            // Highlight first video
+            const firstItem = document.querySelector('.video-item');
+            if(firstItem) firstItem.classList.add('active');
+        });
     </script>
-    <script src="script.js"></script>
 </body>
 </html>

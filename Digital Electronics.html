@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Electronics | GATE Free Crash Course</title>
+    <title>Digital Logic | GATE 2024 Crash Course</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            background: linear-gradient(135deg, #ff6b35, #f7931e, #2a9d8f);
-        }
+        /* Optional: Specific override for Digital Logic active state */
+        /* .category-btn.active { background-color: var(--accent); } */
     </style>
 </head>
 <body>
+
     <nav class="navbar">
         <div class="nav-container">
             <a href="./index.html" class="nav-brand">
@@ -26,31 +26,30 @@
     </nav>
 
     <div class="container">
-        <header>
-            <h1><i class="fas fa-bolt"></i> Digital Electronics</h1>
-            <p class="subtitle">GATE Free Crash Course for ECE, EE, CSE & IT covering Logic Gates, K-Maps, Combinational & Sequential Circuits, Counters, and more</p>
+        <header class="fade-up">
+            <h1><i class="fas fa-microchip" style="color: var(--accent);"></i> Digital Logic</h1>
+            <p class="subtitle">Comprehensive GATE Series covering Boolean Algebra, Logic Gates, Minimization, Combinational & Sequential Circuits</p>
         </header>
         
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search for digital electronics topics...">
+        <div class="search-container fade-up">
+            <input type="text" id="searchInput" placeholder="Search for logic topics (e.g., K-Map, MUX, Flip Flop)...">
             <div class="search-icon">
                 <i class="fas fa-search"></i>
             </div>
         </div>
         
-        <div class="categories">
+        <div class="categories fade-up">
             <button class="category-btn active" data-category="all">All Videos</button>
-            <button class="category-btn" data-category="gates">Logic Gates</button>
-            <button class="category-btn" data-category="kmap">K-Maps</button>
-            <button class="category-btn" data-category="combinational">Combinational Circuits</button>
-            <button class="category-btn" data-category="sequential">Sequential Circuits</button>
-            <button class="category-btn" data-category="counters">Counters</button>
-            <button class="category-btn" data-category="numbers">Number Systems</button>
-            <button class="category-btn" data-category="conversion">ADC/DAC</button>
-            <button class="category-btn" data-category="practice">Practice Questions</button>
+            <button class="category-btn" data-category="boolean">Boolean Algebra</button>
+            <button class="category-btn" data-category="minimization">Minimization</button>
+            <button class="category-btn" data-category="combinational">Combinational</button>
+            <button class="category-btn" data-category="sequential">Sequential</button>
+            <button class="category-btn" data-category="counters">Counters & Registers</button>
+            <button class="category-btn" data-category="fsm">Finite State Machines</button>
         </div>
         
-        <div class="main-content">
+        <div class="main-content fade-up">
+            
             <div class="video-player-container">
                 <div class="video-player">
                     <iframe id="mainVideo" src="https://www.youtube.com/embed/FgVdnXotCkI" 
@@ -60,53 +59,207 @@
                     </iframe>
                 </div>
                 <div class="video-info">
-                    <h2 class="video-title" id="mainVideoTitle">Digital Electronics 01 | LOGIC GATE- NOT, AND, OR, NAND</h2>
+                    <h2 class="video-title" id="mainVideoTitle">Digital Logic 01 | Introduction & Logic Gates</h2>
                     <div class="video-meta">
                         <span id="mainVideoLecture"><i class="fas fa-book-open"></i> Lecture 1</span>
-                        <span id="mainVideoCategory"><i class="fas fa-folder"></i> Logic Gates</span>
+                        <span id="mainVideoCategory"><i class="fas fa-folder"></i> Boolean Algebra</span>
                     </div>
-                    <p class="video-desc" id="mainVideoDesc">Introduction to basic logic gates - NOT, AND, OR, NAND gates, their truth tables, symbols, and Boolean expressions.</p>
+                    <p class="video-desc" id="mainVideoDesc">Introduction to Digital Logic, Universal Gates (NAND, NOR), and basic logic operations. Understanding truth tables and symbols. 
+
+[Image of logic gates truth table]
+</p>
                 </div>
             </div>
             
             <div class="video-list-container">
                 <h3 class="video-list-title">All Lectures</h3>
-                <div class="video-list" id="videoList"></div>
+                <div class="video-list" id="videoList">
+                    </div>
             </div>
         </div>
         
         <footer>
-            <p>© 2024 Digital Electronics | GATE Free Crash Course</p>
-            <div class="footer-links">
-                <a href="./index.html">Home</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-                <a href="#privacy">Privacy Policy</a>
+            <div class="footer-content" style="text-align: center;">
+                <p>© 2024 Digital Logic | GATE 2024 Crash Course</p>
+                <div class="footer-links" style="display: flex; justify-content: center; gap: 20px;">
+                    <a href="./index.html">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#privacy">Privacy Policy</a>
+                </div>
             </div>
         </footer>
     </div>
 
     <script>
+        // Video Data
         const videos = [
-            { id: 1, title: "Digital Electronics 01 | LOGIC GATE- NOT, AND, OR, NAND", category: "gates", youtubeId: "FgVdnXotCkI", description: "Introduction to basic logic gates - NOT, AND, OR, NAND gates, their truth tables, symbols, and Boolean expressions.", watched: false },
-            { id: 2, title: "Digital Electronics 02 | LOGIC GATE - NOR, XOR, XNOR GATE", category: "gates", youtubeId: "ICHCZYB6KIA", description: "Understanding NOR, XOR, and XNOR gates, their properties, truth tables, and applications in digital circuits.", watched: false },
-            { id: 3, title: "Digital Electronics 03 | Complete K-Map in 2.5 Hrs", category: "kmap", youtubeId: "8Ze5dmQDi90", description: "Comprehensive coverage of Karnaugh Maps (K-Maps), simplification of Boolean expressions, and solving complex problems.", watched: false },
-            { id: 4, title: "Digital Electronics 04 | Combinational Circuit- Multiplexer", category: "combinational", youtubeId: "sPjkrvAD3W0", description: "Understanding multiplexers, their working principle, implementation, and applications in digital systems.", watched: false },
-            { id: 5, title: "Digital Electronics 05 | Combinational Circuit", category: "combinational", youtubeId: "CSqNVEsKgaE", description: "Introduction to combinational circuits, their design principles, and implementation of various logic functions.", watched: false },
-            { id: 6, title: "Digital Electronics 06 | Combinational Circuit- Parallel Adder", category: "combinational", youtubeId: "VXE7GG8r7h0", description: "Understanding parallel adders, half adders, full adders, and their implementation in digital arithmetic circuits.", watched: false },
-            { id: 7, title: "Digital Electronics 07 | Sequential Circuit - Latches, SR Flip Flop", category: "sequential", youtubeId: "A-2_HzsPwHA", description: "Introduction to sequential circuits, latches, SR flip-flops, and their working principles in digital systems.", watched: false },
-            { id: 8, title: "Digital Electronics 08 | Sequential Circuit - D, T Flip Flop and Designing Of Flip Flops", category: "sequential", youtubeId: "teKXGaYCzZM", description: "Understanding D and T flip-flops, their characteristics, and designing flip-flops for various applications.", watched: false },
-            { id: 9, title: "Digital Electronics 09 | Asynchronous Counter", category: "counters", youtubeId: "kmBzDukmMcU", description: "Introduction to asynchronous counters, their working principle, design, and applications in digital systems.", watched: false },
-            { id: 10, title: "Digital Electronics 10 | Complete Synchronous Counter in 2 Hour", category: "counters", youtubeId: "T5X89yi16YI", description: "Comprehensive coverage of synchronous counters, their design, working, and applications in sequential circuits.", watched: false },
-            { id: 11, title: "Digital Electronics 11 | Number System", category: "numbers", youtubeId: "Kx6iC4I9hc4", description: "Understanding number systems - binary, octal, hexadecimal, and their conversions in digital electronics.", watched: false },
-            { id: 12, title: "Digital Electronics 12 | Complete Digital Electronics in 2 Hours", category: "practice", youtubeId: "5y-HLE-gnpQ", description: "Comprehensive revision of complete digital electronics syllabus with important concepts and problem-solving techniques.", watched: false },
-            { id: 13, title: "Digital Electronics 13 | ADC & DAC", category: "conversion", youtubeId: "dJxLxlm_chI", description: "Understanding Analog to Digital Converters (ADC) and Digital to Analog Converters (DAC) and their working principles.", watched: false },
-            { id: 14, title: "Digital Electronics 14 | DAC & CMOS Implementation of Logics", category: "conversion", youtubeId: "blMARNqIvKk", description: "Detailed study of DAC implementation and CMOS technology for logic gate implementation in digital circuits.", watched: false },
-            { id: 15, title: "Digital Electronics 15 | 51 Most Expected Questions of Digital Electronics - 1", category: "practice", youtubeId: "XnFdWGWGCqE", description: "Solving 51 most expected questions in digital electronics for GATE examination - Part 1.", watched: false },
-            { id: 16, title: "Digital Electronics 16 | 51 Most Expected Questions of Digital Electronics Part 2", category: "practice", youtubeId: "oOxS7FLrhbo", description: "Solving 51 most expected questions in digital electronics for GATE examination - Part 2.", watched: false },
-            { id: 17, title: "Digital Electronics 17 | Delay and State Machine", category: "sequential", youtubeId: "Y36GH-9LHs0", description: "Understanding propagation delay in digital circuits and introduction to state machines in sequential logic design.", watched: false }
+            { id: 1, title: "Digital Logic 01 | Introduction & Logic Gates", category: "boolean", youtubeId: "FgVdnXotCkI", description: "Introduction to Digital Logic, Universal Gates (NAND, NOR), and basic logic operations. Understanding truth tables and symbols.", watched: false }, 
+            { id: 2, title: "Digital Logic 02 | Boolean Algebra Laws", category: "boolean", youtubeId: "m1nJ2yv7h70", description: "Fundamental laws of Boolean Algebra, De Morgan's theorems, and simplification of logic expressions.", watched: false },
+            { id: 3, title: "Digital Logic 03 | K-Map Minimization (SOP & POS)", category: "minimization", youtubeId: "8Ze5dmQDi90", description: "Karnaugh Map (K-Map) techniques for 2, 3, and 4 variables. Minimizing Sum of Products (SOP) and Product of Sums (POS). ", watched: false },
+            { id: 4, title: "Digital Logic 04 | Prime Implicants & Essential Prime Implicants", category: "minimization", youtubeId: "l1_jL-1_6Z0", description: "Understanding Prime Implicants (PI) and Essential Prime Implicants (EPI) in K-Map minimization.", watched: false },
+            { id: 5, title: "Digital Logic 05 | Combinational Circuits: Multiplexer (MUX)", category: "combinational", youtubeId: "sPjkrvAD3W0", description: "Design and application of Multiplexers (MUX). Implementation of logic functions using MUX. ", watched: false },
+            { id: 6, title: "Digital Logic 06 | Decoders & Encoders", category: "combinational", youtubeId: "feB7j8q1_Sw", description: "Working principle of Decoders and Encoders, priority encoders, and their applications.", watched: false },
+            { id: 7, title: "Digital Logic 07 | Adders & Subtractors", category: "combinational", youtubeId: "VXE7GG8r7h0", description: "Half Adder, Full Adder, Half Subtractor, and Full Subtractor circuits and logic diagrams. ", watched: false },
+            { id: 8, title: "Digital Logic 08 | Sequential Circuits: Latches & Flip Flops", category: "sequential", youtubeId: "A-2_HzsPwHA", description: "Difference between Latches and Flip Flops. SR, JK, D, and T Flip Flops explanations. ", watched: false },
+            { id: 9, title: "Digital Logic 09 | Flip Flop Conversions", category: "sequential", youtubeId: "teKXGaYCzZM", description: "Steps to convert one type of Flip Flop to another (e.g., SR to JK, JK to D).", watched: false },
+            { id: 10, title: "Digital Logic 10 | Asynchronous Counters", category: "counters", youtubeId: "kmBzDukmMcU", description: "Design and analysis of Ripple (Asynchronous) Counters. Understanding propagation delay. ", watched: false },
+            { id: 11, title: "Digital Logic 11 | Synchronous Counters", category: "counters", youtubeId: "T5X89yi16YI", description: "Design of Synchronous Counters using Flip Flop excitation tables. Ring and Johnson counters.", watched: false },
+            { id: 12, title: "Digital Logic 12 | Finite State Machines (FSM)", category: "fsm", youtubeId: "Y36GH-9LHs0", description: "Mealy and Moore Machines, state diagrams, and state table reduction techniques. ", watched: false },
+            { id: 13, title: "Digital Logic 13 | Number Systems & Codes", category: "boolean", youtubeId: "Kx6iC4I9hc4", description: "Binary, Octal, Hexadecimal conversions. Signed number representation (1's and 2's complement).", watched: false },
+            { id: 14, title: "Digital Logic 14 | ADC & DAC Converters", category: "combinational", youtubeId: "dJxLxlm_chI", description: "Analog to Digital (ADC) and Digital to Analog (DAC) conversion techniques and resolution.", watched: false }
         ];
+
+        // DOM Elements
+        const mainVideo = document.getElementById('mainVideo');
+        const mainVideoTitle = document.getElementById('mainVideoTitle');
+        const mainVideoLecture = document.getElementById('mainVideoLecture');
+        const mainVideoCategory = document.getElementById('mainVideoCategory');
+        const mainVideoDesc = document.getElementById('mainVideoDesc');
+        const videoList = document.getElementById('videoList');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const searchInput = document.getElementById('searchInput');
+
+        // Helper: Friendly Category Name
+        function getCategoryName(category) {
+            const map = {
+                'boolean': 'Boolean Algebra',
+                'minimization': 'Minimization',
+                'combinational': 'Combinational',
+                'sequential': 'Sequential',
+                'counters': 'Counters',
+                'fsm': 'Finite State Machines'
+            };
+            return map[category] || 'General';
+        }
+
+        // Display Video List
+        function displayVideoList(videosToDisplay) {
+            videoList.innerHTML = '';
+            
+            videosToDisplay.forEach(video => {
+                const videoItem = document.createElement('div');
+                videoItem.className = 'video-item';
+                videoItem.setAttribute('data-category', video.category);
+                videoItem.setAttribute('data-id', video.id);
+                
+                videoItem.innerHTML = `
+                    <div class="video-thumb">
+                        <iframe src="https://www.youtube.com/embed/${video.youtubeId}" 
+                                title="${video.title}" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-item-info">
+                        <div class="video-item-title">${video.title}</div>
+                        <div class="video-item-meta">
+                            <span>Lecture ${video.id}</span>
+                            <span>${getCategoryName(video.category)}</span>
+                        </div>
+                    </div>
+                `;
+                
+                // Click Event
+                videoItem.addEventListener('click', () => {
+                    updateMainPlayer(video);
+                });
+                
+                videoList.appendChild(videoItem);
+            });
+        }
+
+        // Update Main Player
+        function updateMainPlayer(video) {
+            // Update Active State
+            document.querySelectorAll('.video-item').forEach(item => item.classList.remove('active'));
+            const activeItem = document.querySelector(`.video-item[data-id="${video.id}"]`);
+            if(activeItem) activeItem.classList.add('active');
+
+            // Update Content
+            mainVideo.src = `https://www.youtube.com/embed/${video.youtubeId}`;
+            mainVideoTitle.textContent = video.title;
+            mainVideoLecture.innerHTML = `<i class="fas fa-book-open"></i> Lecture ${video.id}`;
+            mainVideoCategory.innerHTML = `<i class="fas fa-folder"></i> ${getCategoryName(video.category)}`;
+            mainVideoDesc.textContent = video.description;
+
+            // Mobile Scroll
+            if(window.innerWidth < 1024) {
+                mainVideo.scrollIntoView({behavior: "smooth"});
+            }
+        }
+
+        // Filter Logic
+        function filterVideos(category) {
+            if (category === 'all') return videos;
+            return videos.filter(v => v.category === category);
+        }
+
+        // Search Logic
+        function searchVideos(query) {
+            const lower = query.toLowerCase();
+            return videos.filter(v => 
+                v.title.toLowerCase().includes(lower) || 
+                v.description.toLowerCase().includes(lower)
+            );
+        }
+
+        // Category Buttons
+        categoryButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const cat = btn.getAttribute('data-category');
+                const filtered = filterVideos(cat);
+                displayVideoList(filtered);
+
+                if(filtered.length > 0) updateMainPlayer(filtered[0]);
+            });
+        });
+
+        // Search Input
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.trim();
+            let results;
+            
+            if(query === '') {
+                const activeCat = document.querySelector('.category-btn.active').getAttribute('data-category');
+                results = filterVideos(activeCat);
+            } else {
+                results = searchVideos(query);
+            }
+            
+            displayVideoList(results);
+            if(results.length > 0) updateMainPlayer(results[0]);
+        });
+
+        // Initialize & Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animation Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-up').forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Initial Load
+            displayVideoList(videos);
+            // Highlight first video
+            const firstItem = document.querySelector('.video-item');
+            if(firstItem) firstItem.classList.add('active');
+        });
     </script>
-    <script src="script.js"></script>
 </body>
 </html>
