@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GATE CSE Roadmap & Analysis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* -----------------------------------------------------------------------------
+           MODERN APPLE AESTHETIC - DOCUMENTATION STYLE
+           ----------------------------------------------------------------------------- */
+
+        :root {
+            --bg-body: #f5f5f7;
+            --bg-card: #ffffff;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent: #0071e3;
+            --accent-hover: #0077ed;
+            --border-light: rgba(0,0,0,0.05);
+            
+            --radius-l: 20px;
+            --radius-m: 12px;
+            
+            --shadow-card: 0 4px 12px rgba(0,0,0,0.04);
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-stack); -webkit-font-smoothing: antialiased; }
+
+        body { background-color: var(--bg-body); color: var(--text-primary); line-height: 1.6; }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 60px;
+        }
+        .nav-container { max-width: 1000px; height: 100%; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-brand { font-weight: 600; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; color: var(--text-primary); text-decoration: none; }
+        .nav-brand i { color: var(--accent); }
+
+        /* Main Layout */
+        .container { max-width: 1000px; margin: 0 auto; padding: 100px 24px 60px; }
+
+        /* Header */
+        header { text-align: center; margin-bottom: 60px; animation: fadeUp 0.6s ease; }
+        h1 { font-size: 3rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; color: var(--text-primary); }
+        .subtitle { font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; font-weight: 400; }
+
+        /* Section Styling */
+        .section-header { margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; }
+        .section-title { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.01em; }
+        .badge { background: #e8f2ff; color: var(--accent); padding: 6px 14px; border-radius: 99px; font-size: 0.85rem; font-weight: 600; }
+
+        /* 1. STUDY ORDER (Timeline Style) */
+        .roadmap-container {
+            display: grid;
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+        
+        .phase-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-l);
+            padding: 30px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .phase-card:hover { transform: translateY(-2px); }
+
+        .phase-number {
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); font-weight: 600; margin-bottom: 8px;
+        }
+        
+        .phase-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; color: var(--text-primary); }
+        .phase-desc { color: var(--text-secondary); font-size: 1rem; margin-bottom: 20px; }
+        
+        .subject-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { background: #f5f5f7; padding: 6px 12px; border-radius: 6px; font-size: 0.9rem; font-weight: 500; color: #333; }
+        .tag.core { background: rgba(0, 113, 227, 0.1); color: var(--accent); }
+
+        /* 2. WEIGHTAGE TABLE */
+        .table-wrapper {
+            background: var(--bg-card);
+            border-radius: var(--radius-l);
+            padding: 8px; /* Inner padding for border look */
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border-light);
+            margin-bottom: 60px;
+            overflow-x: auto;
+        }
+        
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th { text-align: left; padding: 18px 24px; color: var(--text-secondary); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; border-bottom: 1px solid var(--border-light); }
+        td { padding: 20px 24px; border-bottom: 1px solid var(--border-light); color: var(--text-primary); vertical-align: middle; }
+        tr:last-child td { border-bottom: none; }
+        
+        .progress-bar { width: 100px; height: 6px; background: #eee; border-radius: 4px; overflow: hidden; display: inline-block; margin-left: 10px; vertical-align: middle; }
+        .progress-fill { height: 100%; background: var(--accent); border-radius: 4px; }
+        .percentage-text { font-weight: 600; display: inline-block; width: 60px; }
+
+        /* 3. TOPIC DETAILS GRID */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .topic-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-l);
+            padding: 24px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-card);
+        }
+
+        .topic-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border-light); }
+        .topic-icon { width: 40px; height: 40px; border-radius: 10px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #555; font-size: 1.1rem; }
+        .topic-icon.high-priority { background: var(--accent); color: white; }
+        
+        .topic-name { font-weight: 700; font-size: 1.1rem; }
+        .topic-list { list-style: none; }
+        .topic-list li { 
+            position: relative; 
+            padding-left: 20px; 
+            margin-bottom: 10px; 
+            font-size: 0.95rem; 
+            color: #424245; 
+            line-height: 1.5;
+        }
+        .topic-list li::before {
+            content: "•";
+            position: absolute; left: 0; color: var(--accent); font-weight: bold;
+        }
+
+        /* 4. REVISION NOTE */
+        .revision-box {
+            background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
+            color: white;
+            padding: 40px;
+            border-radius: var(--radius-l);
+            text-align: center;
+        }
+        .revision-box h3 { font-size: 1.5rem; margin-bottom: 12px; }
+        .revision-box p { color: #d2d2d7; max-width: 600px; margin: 0 auto; }
+
+        /* Animations */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .container { padding-top: 80px; }
+            .section-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            td { display: block; padding: 10px 24px; border: none; }
+            td:first-child { font-weight: 700; padding-top: 20px; }
+            tr { border-bottom: 1px solid var(--border-light); display: block; }
+            thead { display: none; } /* Hide table headers on mobile */
+            .progress-bar { width: 100%; margin: 8px 0 0 0; display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand"><i class="fa-solid fa-graduation-cap"></i> GATE CSE</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <header>
+            <h1>Computer Science Roadmap</h1>
+            <p class="subtitle">A strategic, data-driven approach to mastering the GATE syllabus, prioritized by weightage and subject dependencies.</p>
+        </header>
+
+        <div class="section-header">
+            <h2 class="section-title">Recommended Study Order</h2>
+            <span class="badge">Based on Dependency</span>
+        </div>
+
+        <div class="roadmap-container">
+            
+            <div class="phase-card">
+                <div class="phase-number">Phase 1: The Foundation</div>
+                <h3 class="phase-title">High Dependency & Math</h3>
+                <p class="phase-desc">These subjects form the base for everything else. Master implementation and mathematical proofs early.</p>
+                <div class="subject-tags">
+                    <span class="tag core">Discrete Math</span>
+                    <span class="tag core">Engineering Math</span>
+                    <span class="tag core">Data Structures</span>
+                    <span class="tag">C Programming</span>
+                </div>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase-number">Phase 2: Core Logic</div>
+                <h3 class="phase-title">Algorithms & Hardware</h3>
+                <p class="phase-desc">Use your Data Structures knowledge for Algorithms. Start Hardware concepts to prepare for OS.</p>
+                <div class="subject-tags">
+                    <span class="tag core">Algorithms</span>
+                    <span class="tag">Digital Logic</span>
+                    <span class="tag">Computer Organization</span>
+                </div>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase-number">Phase 3: Systems & Application</div>
+                <h3 class="phase-title">Systems, Networks & Data</h3>
+                <p class="phase-desc">OS and Architecture often mix in questions. Networks require basic Probability/Maths.</p>
+                <div class="subject-tags">
+                    <span class="tag core">Operating Systems</span>
+                    <span class="tag core">DBMS</span>
+                    <span class="tag">Computer Networks</span>
+                </div>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase-number">Phase 4: Theory</div>
+                <h3 class="phase-title">Computation & Compilation</h3>
+                <p class="phase-desc">Theory of Computation is the conceptual parent of Compiler Design. Study them sequentially.</p>
+                <div class="subject-tags">
+                    <span class="tag">Theory of Computation</span>
+                    <span class="tag">Compiler Design</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="section-header">
+            <h2 class="section-title">Weightage Analysis</h2>
+            <span class="badge">2017–2025 Trends</span>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Avg. Weightage</th>
+                        <th>Priority Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Data Structures + C</td>
+                        <td>
+                            <span class="percentage-text">12–15%</span>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
+                        </td>
+                        <td><span style="color: var(--accent); font-weight:600">Critical</span></td>
+                    </tr>
+                    <tr>
+                        <td>Discrete Mathematics</td>
+                        <td>
+                            <span class="percentage-text">10–12%</span>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 85%"></div></div>
+                        </td>
+                        <td><span style="color: var(--accent); font-weight:600">Critical</span></td>
+                    </tr>
+                    <tr>
+                        <td>Computer Organization</td>
+                        <td>
+                            <span class="percentage-text">9–11%</span>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 75%"></div></div>
+                        </td>
+                        <td>High</td>
+                    </tr>
+                    <tr>
+                        <td>Operating Systems</td>
+                        <td>
+                            <span class="percentage-text">9–10%</span>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 70%"></div></div>
+                        </td>
+                        <td>High</td>
+                    </tr>
+                    <tr>
+                        <td>Computer Networks</td>
+                        <td>
+                            <span class="percentage-text">7–10%</span>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 65%"></div></div>
+                        </td>
+                        <td>Medium-High</td>
+                    </tr>
+                    <tr>
+                        <td>Algorithms</td>
+                        <td>
+                            <span class="percentage-text">5–9%</span>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 60%"></div></div>
+                        </td>
+                        <td>Medium</td>
+                    </tr>
+                    <tr>
+                        <td>Theory of Computation</td>
+                        <td>
+                            <span class="percentage-text">7–9%</span>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 60%"></div></div>
+                        </td>
+                        <td>Medium</td>
+                    </tr>
+                    <tr>
+                        <td>DBMS</td>
+                        <td>
+                            <span class="percentage-text">7–8%</span>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 55%"></div></div>
+                        </td>
+                        <td>Medium</td>
+                    </tr>
+                    <tr>
+                        <td>Compiler Design</td>
+                        <td>
+                            <span class="percentage-text">4–6%</span>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div>
+                        </td>
+                        <td>Standard</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-header">
+            <h2 class="section-title">Topic-wise Focus</h2>
+            <span class="badge">Detailed Breakdown</span>
+        </div>
+
+        <div class="topics-grid">
+            
+            <div class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon high-priority"><i class="fa-solid fa-calculator"></i></div>
+                    <div class="topic-name">Discrete Math</div>
+                </div>
+                <ul class="topic-list">
+                    <li>Propositional & First-order logic (SAT-style)</li>
+                    <li>Relations, Functions, Partial Orders</li>
+                    <li>Graph Theory (Connectivity, Matching)</li>
+                    <li>Combinatorics & Probability</li>
+                </ul>
+            </div>
+
+            <div class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon high-priority"><i class="fa-solid fa-code"></i></div>
+                    <div class="topic-name">Data Structures & C</div>
+                </div>
+                <ul class="topic-list">
+                    <li>Pointers, Recursion (Stack tracing)</li>
+                    <li>Linked Lists, Stacks, Queues</li>
+                    <li>Trees (BST, AVL, Heaps)</li>
+                    <li>Hashing & Graph Representations</li>
+                </ul>
+            </div>
+
+            <div class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon"><i class="fa-solid fa-sitemap"></i></div>
+                    <div class="topic-name">Algorithms</div>
+                </div>
+                <ul class="topic-list">
+                    <li>Asymptotic Analysis (Best/Avg/Worst)</li>
+                    <li>Sorting & Searching variations</li>
+                    <li>Greedy (Huffman, MST) & DP (LCS, Knapsack)</li>
+                    <li>Shortest Paths (Dijkstra, Bellman-Ford)</li>
+                </ul>
+            </div>
+
+            <div class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <div class="topic-name">Computer Org (COA)</div>
+                </div>
+                <ul class="topic-list">
+                    <li>Instruction Formats & Addressing Modes</li>
+                    <li>Pipeline Hazards & CPI</li>
+                    <li>Cache Mapping & Memory Hierarchy</li>
+                    <li>Floating Point Arithmetic</li>
+                </ul>
+            </div>
+
+            <div class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon"><i class="fa-solid fa-desktop"></i></div>
+                    <div class="topic-name">Operating Systems</div>
+                </div>
+                <ul class="topic-list">
+                    <li>CPU Scheduling & Deadlocks (Banker’s)</li>
+                    <li>Synchronization (Semaphores)</li>
+                    <li>Paging, Segmentation, Virtual Memory</li>
+                    <li>File Systems & Disk Scheduling</li>
+                </ul>
+            </div>
+
+            <div class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon"><i class="fa-solid fa-database"></i></div>
+                    <div class="topic-name">DBMS</div>
+                </div>
+                <ul class="topic-list">
+                    <li>Relational Algebra & SQL (Joins/Nested)</li>
+                    <li>Normalization (BCNF, 3NF)</li>
+                    <li>Transactions (Serializability)</li>
+                    <li>Indexing (B/B+ Trees)</li>
+                </ul>
+            </div>
+
+            <div class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon"><i class="fa-solid fa-network-wired"></i></div>
+                    <div class="topic-name">Computer Networks</div>
+                </div>
+                <ul class="topic-list">
+                    <li>IP Addressing & Subnetting (CIDR)</li>
+                    <li>TCP vs UDP, Flow/Congestion Control</li>
+                    <li>Routing Algorithms</li>
+                    <li>Error Control (CRC, Hamming)</li>
+                </ul>
+            </div>
+
+            <div class="topic-card">
+                <div class="topic-header">
+                    <div class="topic-icon"><i class="fa-solid fa-arrow-down-a-z"></i></div>
+                    <div class="topic-name">Compiler & TOC</div>
+                </div>
+                <ul class="topic-list">
+                    <li>Regular Languages & Finite Automata</li>
+                    <li>Context-Free Grammars & PDAs</li>
+                    <li>Parsing (LL, LR, SLR) & Syntax Trees</li>
+                    <li>Decidability & Turing Machines</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="revision-box">
+            <h3>Weekly Cycle Strategy</h3>
+            <p>Dedicate 3–4 evenings strictly for problem practice from previous GATE papers that mix multiple subjects (e.g., OS + COA, Maths + Algorithms).</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
